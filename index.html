@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./blackjack.js"></script>
+    <script src="./card.js"></script>
+    <script src="./deck.js"></script>
+    <script src="./player.js"></script>
+    <script src="./dealer.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+function playGame() {
+    while (player.chips > 0) {
+        let bet = placeBet();
+        startGame();
+        let playerResult = playerTurn();
+        if (playerResult !== 'bust') {
+            dealerTurn();
+        }
+        let result = determineWinner();
+        adjustChips(result, bet);
+
+        if (player.chips > 0) {
+            let continuePlaying = prompt("Queres continuar a jogar? (s/n)");
+            if (continuePlaying !== 's') {
+                break;
+            }
+        } else {
+            console.log("Você não tem fichas suficientes para continuar a jogar.");
+            break;
+        }
+    }
+    console.log("Jogo terminado. Fichas finais:", player.chips);
+}
+
+playGame();
+
+</script>
